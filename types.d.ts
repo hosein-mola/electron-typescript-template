@@ -14,11 +14,14 @@ type View = 'CPU' | 'RAM' | 'STORAGE';
 
 type FrameWindowAction = 'CLOSE' | 'MAXIMIZE' | 'MINIMIZE';
 
+type DatabaseStatus = 'SUCCESS' | 'FAILURE';
+
 type EventPayloadMapping = {
   statistics: Statistics;
   getStaticData: StaticData;
   changeView: View;
   sendFrameAction: FrameWindowAction;
+  subscribeDatabaseStatus: DatabaseStatus; 
 };
 
 type UnsubscribeFunction = () => void;
@@ -29,6 +32,9 @@ interface Window {
       callback: (statistics: Statistics) => void
     ) => UnsubscribeFunction;
     getStaticData: () => Promise<StaticData>;
+    subscribeDatabaseStatus: (
+      callback: (status: DatabaseStatus) => void
+    ) => UnsubscribeFunction;
     subscribeChangeView: (
       callback: (view: View) => void
     ) => UnsubscribeFunction;

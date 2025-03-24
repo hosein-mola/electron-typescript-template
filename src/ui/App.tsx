@@ -4,6 +4,31 @@ import './App.css'
 import { useStatistics } from './useStatistics'
 import { Chart } from './Chart'
 
+const StatisticsComponent = () => {
+  const [statistics, setStatistics] = useState<any>(null)
+
+  useEffect(() => {
+    console.log('run');
+    // Subscribe to the 'statistics' event
+    const unsubscribe = window.electron.subscribeDatabaseStatus((stats) => {
+      console.log('run');
+      console.log('database status:', stats)
+      setStatistics(stats)
+    })
+    // Cleanup subscription when the component unmounts
+    return () => {
+      unsubscribe()
+    }
+  }, [])
+
+  return (
+    <div>
+      <h1>Statistics</h1>
+      <pre>{JSON.stringify(statistics, null, 2)}</pre>
+    </div>
+  )
+}
+
 function App() {
   const staticData = useStaticData()
   const statistics = useStatistics(10)
@@ -39,6 +64,7 @@ function App() {
 
   return (
     <div className="App">
+      <StatisticsComponent />
       <Header />
       <div className="main">
         <div>

@@ -21,7 +21,8 @@
     "os-utils": "^0.0.14",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "recharts": "^2.15.1"
+    "recharts": "^2.15.1",
+    "sqlite3": "^5.1.7"
   },
   "devDependencies": {
     "@playwright/test": "^1.51.1",
@@ -44,6 +45,9 @@
     "vitest": "^3.0.9"
   },
   "pnpm": {
+    "onlyBuiltDependencies": [
+      "sqlite3"
+    ],
     "ignoredBuiltDependencies": [
       "electron",
       "esbuild"

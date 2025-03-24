@@ -6,6 +6,8 @@ import { ipcWebContentsSend } from './util.js';
 
 const POLLING_INTERVAL = 500;
 
+
+
 export function pollResources(mainWindow: BrowserWindow) {
   setInterval(async () => {
     const cpuUsage = await getCpuUsage();
