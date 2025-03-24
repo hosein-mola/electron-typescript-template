@@ -35,7 +35,7 @@ test('', () => {
   expect(template[0].label).toEqual('Show');
   template[0]?.click?.(null as any, null as any, null as any);
   expect(mainWindow.show).toHaveBeenCalled();
-  expect(app.dock.show).toHaveBeenCalled();
+  expect(app.dock?.show).toHaveBeenCalled();
 
   template[1]?.click?.(null as any, null as any, null as any);
   expect(app.quit).toHaveBeenCalled();

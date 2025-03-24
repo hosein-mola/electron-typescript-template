@@ -11,6 +11,9 @@ export function ipcMainHandle<Key extends keyof EventPayloadMapping>(
   handler: () => EventPayloadMapping[Key]
 ) {
   ipcMain.handle(key, (event) => {
+    if (!event.senderFrame) {
+      throw new Error("Invalid sender frame");
+    }
     validateEventFrame(event.senderFrame);
     return handler();
   });
@@ -21,6 +24,9 @@ export function ipcMainOn<Key extends keyof EventPayloadMapping>(
   handler: (payload: EventPayloadMapping[Key]) => void
 ) {
   ipcMain.on(key, (event, payload) => {
+    if (!event.senderFrame) {
+      throw new Error("Invalid sender frame");
+    }
     validateEventFrame(event.senderFrame);
     return handler(payload);
   });
