@@ -1,4 +1,4 @@
-# Electron Course
+# Reactjs Electron Template
 
 This is the example code from the following freeCodeCamp course: <ToBeDefined></ToBeDefined>
 
